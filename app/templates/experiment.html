@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Decision Making Experiment</title>
+
+        <!-- Load libraries -->
+        <script src="../static/lib/jquery-3.3.1/jquery.min.js"></script>
+        <script src="../static/lib/jspsych-6.1.0/jspsych.js"></script>
+
+        <!-- Load jsPsych plug-ins -->
+        <script src="../static/js/rst-experiment.js" type="text/javascript"></script>
+
+        <!-- Load jsPsych plug-ins -->
+        <script src="../static/js/jspsych-rst-trial.js" type="text/javascript"></script>
+        <script src="../static/js/jspsych-pass-data.js" type="text/javascript"></script>
+        <script src="../static/js/jspsych-reject-data.js" type="text/javascript"></script>
+
+        <!-- Load CSS styles -->
+        <link href="../static/lib/jspsych-6.1.0/css/jspsych.css" rel="stylesheet" type="text/css"></link>
+        <link href="../static/css/fishing-competition.min.css" rel="stylesheet" type="text/css"></link>
+
+    </head>
+    <body></body>
+    <script>
+
+    // Add version metadata.
+    jsPsych.data.addProperties({
+      task_version: '0.1',
+    });
+
+    // Define timeline.
+    var timeline = [];
+    timeline = timeline.concat(rst_trials);
+
+    jsPsych.init({
+      timeline: timeline,
+      show_progress_bar: true,
+      on_finish: function() {
+
+        // Add interactions to the data variable
+        var interaction_data = jsPsych.data.getInteractionData();
+        jsPsych.data.get().addToLast({interactions: interaction_data.json()});
+
+        // Display jsPsych data in viewport.
+        jsPsych.data.displayData();
+
+        // Save complete dataset to disk.
+        // pass_data("{{workerId}}", "{{assignmentId}}", "{{hitId}}",  "{{a}}", "{{tp_a}}", "{{b}}", "{{tp_b}}", "{{c}}", "{{tp_c}}");
+
+        // Save rejected dataset to disk.
+        // reject_data('1011')
+
+      }
+    })
+
+    </script>
+</html>
