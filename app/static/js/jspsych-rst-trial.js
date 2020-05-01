@@ -51,7 +51,7 @@ jsPsych.plugins["rst-trial"] = (function() {
         type: jsPsych.plugins.parameterType.INT,
         pretty_name: 'Trial duration',
         default: 2000,
-        description: 'How long to show trial before it ends.'
+        description: 'How long to show feedback before it ends.'
       }
     }
   }
@@ -96,11 +96,11 @@ jsPsych.plugins["rst-trial"] = (function() {
     new_html += `<div class="cloud" context="${trial.beach_left}" pattern="1"></div>`;
     new_html += `<div class="cloud" context="${trial.beach_left}" pattern="2"></div>`;
     new_html += `<div class="cloud" context="${trial.beach_left}" pattern="3"></div>`;
-    new_html += `<div class="shadow" context="${trial.beach_left}"></div>`;
+    new_html += `<div class="shadow" side="left" context="${trial.beach_left}"></div>`;
 
     // Add context setters (left).
-    new_html += `<div class="surfboard" context="${trial.beach_left}"></div>`;
-    new_html += `<div class="decal" context="${trial.beach_left}"></div>`;
+    new_html += `<div class="surfboard" side="left" context="${trial.beach_left}"></div>`;
+    new_html += `<div class="decal" side="left" context="${trial.beach_left}"></div>`;
     new_html += `<div class="closed-sign" context="${trial.beach_left}">`;
     new_html += '<div class="closed-symbol"></div>';
     new_html += '</div>';
@@ -129,11 +129,11 @@ jsPsych.plugins["rst-trial"] = (function() {
     new_html += `<div class="cloud" context="${trial.beach_right}" pattern="1"></div>`;
     new_html += `<div class="cloud" context="${trial.beach_right}" pattern="2"></div>`;
     new_html += `<div class="cloud" context="${trial.beach_right}" pattern="3"></div>`;
-    new_html += `<div class="shadow" context="${trial.beach_right}"></div>`;
+    new_html += `<div class="shadow" side="right" context="${trial.beach_right}"></div>`;
 
     // Add context setters (right).
-    new_html += `<div class="surfboard" context="${trial.beach_right}"></div>`;
-    new_html += `<div class="decal" context="${trial.beach_right}"></div>`;
+    new_html += `<div class="surfboard" side="right" context="${trial.beach_right}"></div>`;
+    new_html += `<div class="decal" side="right" context="${trial.beach_right}"></div>`;
     new_html += `<div class="closed-sign" context="${trial.beach_right}">`;
     new_html += '<div class="closed-symbol"></div>';
     new_html += '</div>';

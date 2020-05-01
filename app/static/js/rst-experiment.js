@@ -19,12 +19,30 @@ const outcomes = [
 const choices = [37,39];
 
 // Define timings.
-const choice_duration = null;
+const choice_duration = 10000;
 const feedback_duration = 2000;
 
 // Define missed repsonses count.
 var missed_threshold = 6;
 var missed_responses = 0;
+
+//------------------------------------//
+// Define instructions block.
+//------------------------------------//
+
+// Define image scaling CSS.
+const style = "width:auto; height:auto; max-width:100%; max-height:80vh;";
+
+var instructions = {
+  type: 'instructions',
+  pages: [
+    `<img src='../static/img/instructions01.png' style="${style}"</img>`,
+    `<img src='../static/img/instructions02.png' style="${style}"</img>`,
+  ],
+  show_clickable_nav: true,
+  button_label_previous: "Prev",
+  button_label_next: "Next"
+}
 
 //------------------------------------//
 // Define risk sensitivity task.

@@ -275,12 +275,17 @@
 }
 .surfboard {
   position: absolute;
-  left: 87.5%;
   bottom: 10%;
   -webkit-transform: translate(-50%, 0%);
   transform: translate(-50%, 0%);
   height: 55%;
   width: 55%;
+}
+.surfboard[side='left'] {
+  left: 12.5%;
+}
+.surfboard[side='right'] {
+  left: 87.5%;
 }
 .surfboard[context='red'] {
   content: url("../img/surfboard-red.svg");
@@ -296,15 +301,22 @@
 }
 .decal {
   position: absolute;
-  left: 87.5%;
   top: 60%;
   -webkit-transform: translate3d(-50%, -50%, 0);
   transform: translate3d()(-50%, -50%, 0);
+}
+.decal[side='left'] {
+  left: 12.5%;
+}
+.decal[side='right'] {
+  left: 87.5%;
 }
 .decal[context='red'] {
   content: url("../img/animal-lion.svg");
   height: 14%;
   width: 14%;
+  -webkit-transform: translate3d(-50%, -50%, 0) scaleX(-1);
+  transform: translate3d(-50%, -50%, 0) scaleX(-1);
 }
 .decal[context='green'] {
   content: url("../img/animal-snake.svg");
@@ -332,6 +344,12 @@
   background: black;
   border-radius: 50%;
   opacity: 0.1;
+}
+.shadow[side='left'] {
+  left: 11%;
+}
+.shadow[side='right'] {
+  left: 86%;
 }
 .shadow[context='closed'] {
   display: none;
@@ -382,8 +400,9 @@
   transform: translate(-50%, -50%);
   width: 20vw;
   height: 20vw;
+  border: 0.5px solid #807256;
   border-radius: 50% 50%;
-  background-color: #718E82;
+  background-color: #fffefc;
   opacity: 0%;
 }
 .fish-container[context='feedback'] {
@@ -435,62 +454,4 @@
 }
 .fish[pattern='3'][outcome='0'] {
   display: inherit;
-}
-
-/* ---------------------------------- */
-/* ACNH Dialogue Box                  */
-/* ---------------------------------- */
-
-.dialogue-box {
-  position: absolute;
-  top: 67%;
-  left: 50%;
-  -webkit-transform: translate(-50%, 0%);
-  transform: translate(-50%, 0%);
-  height: 30%;
-  width: 60%;
-  /* max-height: 600px;
-  min-height: 300px;
-  min-width: 1024px; */
-}
-.dialogue-box-top {
-  position: absolute;
-  top: 0;
-  left: 50%;
-  -webkit-transform: translate(-50%, 0%);
-  transform: translate(-50%, 0%);
-  height: 75%;
-  width: 100%;
-  background-color: #fdf8e3;
-  border-radius: 40% 40% 30% 30% / 150% 150% 150% 150%;
-  transform-origin: center;
-}
-.dialogue-box-bottom {
-  position: absolute;
-  bottom: 0;
-  left: 50%;
-  -webkit-transform: translate(-50%, 0%);
-  transform: translate(-50%, 0%);
-  width: 94%;
-  height: 40%;
-  background-color: #fdf8e3;
-  border-radius: 5% 5% 20% 20% / 100% 100% 100% 100%;
-  transform-origin: center;
-}
-.dialogue {
-  position: absolute;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  top: 50%;
-  left: 50%;
-  -webkit-transform: translate(-50%, -50%);
-  transform: translate(-50%, -50%);
-  height: 80%;
-  width: 80%;
-  font-family: "Hind", sans-serif;
-  font-size: 2.25rem;
-  line-height: 1.5em;
-  text-align: center;
-  color: #807256;
 }

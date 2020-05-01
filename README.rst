@@ -1,27 +1,14 @@
-Risk Sensitivity Task
-=======
+RiskTaskJS
+==========
 
-Quickstart
-^^^^^^^^^^
+A child-friendly jsPsych port of the `risk sensitivity task <https://doi.org/10.1523/JNEUROSCI.5498-10.2012>`_.
 
-The following is the minimal set of commands needed to get started with NivTurk (assuming you have already a virtual machine with python 3.6+ installed):
+Serving Experiments
+^^^^^^^^^^^^^^^^^^^
 
-.. code-block:: bash
-
-    ssh <user-name>@<server-name>.princeton.edu
-    git clone https://github.com/nivlab/nivturk.git
-    cd nivturk
-    pip install -r requirements.txt
-    gunicorn -b 0.0.0.0:9000 -w 4 app:app
-
-
-Wiki
-^^^^
-
-For details on how to serve your experiment, how the code is organized, and how data is stored, please see the
-`Wiki <https://github.com/nivlab/nivturk/wiki>`_.
+For details on how to serve the experiment using NivTurk, please see the `Wiki <https://github.com/nivlab/nivturk/wiki>`_.
 
 Attributions
 ^^^^^^^^^^^^
-https://codepen.io/chilliconcode/pen/qRmGGw
-https://codepen.io/a-trost/pen/VwLYJpR
+- Beach animation originally designed by `chilli con code <https://codepen.io/chilliconcode>`_.
+- Surfboards inspired by `Alex Trost <https://codepen.io/a-trost/pen/VwLYJpR>`_.
