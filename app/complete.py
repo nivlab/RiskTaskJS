@@ -8,18 +8,19 @@ bp = Blueprint('complete', __name__)
 def complete():
     """Present completion screen to participant."""
 
+    #GEHA LINK: commented out here for running from link
     ## Error-catching: screen for previous visits.
-    if 'complete' in session:
+    # if 'complete' in session:
 
         ## Update participant metadata.
-        session['WARNING'] = "Revisited complete page."
-        write_metadata(session, ['WARNING'], 'a')
+        # session['WARNING'] = "Revisited complete page."
+        # write_metadata(session, ['WARNING'], 'a')
 
-    else:
+    # else:
 
-        ## Update participant metadata.
-        session['complete'] = True
-        write_metadata(session, ['complete'], 'a')
+    ## Update participant metadata.
+    session['complete'] = True
+    write_metadata(session, ['complete'], 'a')
 
     ## DEV NOTE:
     ## If you want a custom completion code, replace the return statement with:

@@ -3,7 +3,9 @@ from flask import (Flask, redirect, render_template, request, session, url_for)
 from app import consent, alert, experiment, complete, error
 from .io import write_metadata
 from .utils import gen_code
-__version__ = '0.9.4'
+#GEHA LINK for timestamping
+from datetime import datetime
+__version__ = '0.9.1'
 
 ## Define root directory.
 ROOT_DIR = os.path.dirname(os.path.realpath(__file__))
@@ -36,6 +38,11 @@ app.register_blueprint(experiment.bp)
 app.register_blueprint(complete.bp)
 app.register_blueprint(error.bp)
 
+## GEHA LINK - retrieve a timestamp for participants
+## this will serve as their workerID
+timestamp = datetime.now()
+timestamp_str = timestamp.strftime("%d-%m-%Y--%H:%M:%S")
+
 ## Define root node.
 @app.route('/')
 def index():
@@ -45,64 +52,73 @@ def index():
     session['metadata'] = meta_dir
     session['reject'] = reject_dir
 
+    # GEHA LINK: changed to a timestamp for running from a link
     ## Record incoming metadata.
     info = dict(
-        workerId     = request.args.get('workerId'),        # MTurk metadata
-        assignmentId = request.args.get('assignmentId'),    # MTurk metadata
-        hitId        = request.args.get('hitId'),           # MTurk metadata
-        subId        = gen_code(24),                        # NivTurk metadata
-        a            = request.args.get('a'),               # TurkPrime metadata
-        tp_a         = request.args.get('tp_a'),            # TurkPrime metadata
-        b            = request.args.get('b'),               # TurkPrime metadata
-        tp_b         = request.args.get('tp_b'),            # TurkPrime metadata
-        c            = request.args.get('c'),               # TurkPrime metadata
-        tp_c         = request.args.get('tp_c'),            # TurkPrime metadata
-        browser      = request.user_agent.browser,          # User metadata
-        platform     = request.user_agent.platform,         # User metadata
-        version      = request.user_agent.version,          # User metadata
+    workerId     = timestamp_str,#gen_code(5),
+    assignmentId = timestamp_str,                         # MTurk metadata
+    hitId        = timestamp_str,                         # MTurk metadata
+    subId        = timestamp_str,                        # NivTurk metadata
+    a            = request.args.get('a'),               # TurkPrime metadata
+    tp_a         = request.args.get('tp_a'),            # TurkPrime metadata
+    b            = request.args.get('b'),               # TurkPrime metadata
+    tp_b         = request.args.get('tp_b'),            # TurkPrime metadata
+    c            = request.args.get('c'),               # TurkPrime metadata
+    tp_c         = request.args.get('tp_c'),            # TurkPrime metadata
+    browser      = request.user_agent.browser,          # User metadata
+    platform     = request.user_agent.platform,         # User metadata
+    version      = request.user_agent.version,          # User metadata
     )
 
-    ## Case 1: workerId absent.
-    if info['workerId'] is None:
 
-        ## Redirect participant to error (admin error).
-        return redirect(url_for('error.error', errornum=1000))
+    ## GEHA: trying to put subId in the filename
+    session['subId'] = info['subId']
+    print(info['subId'])
 
-    ## Case 2: mobile user.
-    elif info['platform'] in ['android','iphone','ipad','wii']:
+    ## Case 1: mobile user.
+    if info['platform'] in ['android','iphone','ipad','wii']:
 
         ## Redirect participant to error (admin error).
         return redirect(url_for('error.error', errornum=1001))
 
-    ## Case 3: repeat visit, manually changed workerId.
-    elif 'workerId' in session and session['workerId'] != info['workerId']:
+    ## Case 2: first visit, workerId absent.
+    elif not 'workerId' in session and info['workerId'] is None:
+        ##GEHA LINK: always show them the consent form
+        ## Redirect participant to error (admin error).
 
-        ## Update metadata.
-        session['ERROR'] = '1002: workerId tampering detected.'
-        write_metadata(session, ['ERROR'], 'a')
-
-        ## Redirect participant to error (unusual activity).
-        return redirect(url_for('error.error', errornum=1002))
-
-    ## Case 4: repeat visit, preexisting activity.
-    elif 'workerId' in session or info['workerId'] in os.listdir(meta_dir):
-
-        ## Update metadata.
         for k, v in info.items(): session[k] = v
-        session['ERROR'] = "1004: Revisited home."
-        write_metadata(session, ['ERROR'], 'a')
+        write_metadata(session, ['workerId','hitId','assignmentId','subId','browser','platform','version'], 'w')
+        return redirect(url_for('consent.consent'))
 
-        ## Redirect participant to error (previous participation).
-        return redirect(url_for('error.error', errornum=1004))
-
-    ## Case 5: first visit, workerId present.
-    else:
+    ## Case 3: first visit, workerId present.
+    elif not 'workerId' in session:
 
         ## Update metadata.
         for k, v in info.items(): session[k] = v
         write_metadata(session, ['workerId','hitId','assignmentId','subId','browser','platform','version'], 'w')
 
         ## Redirect participant to consent form.
+        return redirect(url_for('consent.consent'))
+
+    ## Case 4: repeat visit, manually changed workerId.
+    elif session['workerId'] != info['workerId'] and info['workerId'] is not None:
+
+        ## Update metadata.
+        # session['ERROR'] = '1002: workerId tampering detected.'
+        # write_metadata(session, ['ERROR'], 'a')
+
+        ## Redirect participant to error (unusual activity
+        # GEHA LINK: always show them the consetn form
+        for k, v in info.items(): session[k] = v
+        write_metadata(session, ['workerId','hitId','assignmentId','subId','browser','platform','version'], 'w')
+
+        return redirect(url_for('consent.consent'))
+
+    ## Case 5: all else.
+    else:
+
+        ## Redirect participant to consent form.
+        print('unhandled case in init detected.')
         return redirect(url_for('consent.consent'))
 
 ## DEV NOTE:

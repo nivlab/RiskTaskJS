@@ -8,44 +8,25 @@ bp = Blueprint('experiment', __name__)
 def experiment():
     """Present jsPsych experiment to participant."""
 
+    # GEHA LINK: Commenting out to avoid 1004 since there is no sub ID
     ## Error-catching: screen for previous visits.
-    if 'experiment' in session:
+    # if 'experiment' in session:
 
         ## Update participant metadata.
-        session['ERROR'] = "1004: Revisited experiment."
-        write_metadata(session, ['ERROR'], 'a')
+        # session['ERROR'] = "1004: Revisited experiment."
+        # write_metadata(session, ['ERROR'], 'a')
 
         ## Redirect participant to error (previous participation).
-        return redirect(url_for('error.error', errornum=1004))
+        # return redirect(url_for('error.error', errornum=1004))
 
-    else:
+    # else:
 
-        ## Update participant metadata.
-        session['experiment'] = True
-        write_metadata(session, ['experiment'], 'a')
+    ## Update participant metadata.
+    session['experiment'] = True
+    write_metadata(session, ['experiment'], 'a')
 
-        ## Present experiment.
-        return render_template('experiment.html', workerId=session['workerId'], assignmentId=session['assignmentId'], hitId=session['hitId'], a=session['a'], tp_a=session['tp_a'], b=session['b'], tp_b=session['tp_b'], c=session['c'], tp_c=session['tp_c'])
-
-@bp.route('/experiment', methods=['POST'])
-def experiment_post():
-    """Write jsPsych message to metadata."""
-
-    if request.is_json:
-
-        ## Retrieve jsPsych data.
-        msg = request.get_json()
-
-        ## Update participant metadata.
-        session['MESSAGE'] = msg
-        write_metadata(session, ['MESSAGE'], 'a')
-
-        ## DEV NOTE:
-        ## This function returns the HTTP response status code: 200
-        ## Code 200 signifies the POST request has succeeded.
-        ## For a full list of status codes, see:
-        ## https://developer.mozilla.org/en-US/docs/Web/HTTP/Status
-        return ('', 200)
+    ## Present experiment.
+    return render_template('experiment.html', workerId=session['workerId'], assignmentId=session['assignmentId'], hitId=session['hitId'], a=session['a'], tp_a=session['tp_a'], b=session['b'], tp_b=session['tp_b'], c=session['c'], tp_c=session['tp_c'])
 
 @bp.route('/data_pass', methods = ['POST'])
 def data_pass():
