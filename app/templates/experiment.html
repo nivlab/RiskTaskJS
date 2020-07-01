@@ -62,7 +62,11 @@
 
     // Define timeline.
     var timeline = [];
-    timeline = timeline.concat(instructions);
+    timeline = timeline.concat(instructions1);
+    timeline = timeline.concat(forced_choice_practice);
+    timeline = timeline.concat(instructions2);
+    timeline = timeline.concat(choice_practice);
+    timeline = timeline.concat(instructions3);
     timeline = timeline.concat(rst_trials);
 
     jsPsych.init({
