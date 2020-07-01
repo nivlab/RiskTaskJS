@@ -87,12 +87,12 @@
         jsPsych.data.get().addToLast({interactions: interaction_data.json()});
 
         // Testing
-        jsPsych.data.displayData();
+        //jsPsych.data.displayData();
 
         if (missed_responses < missed_threshold) {
 
           // Save complete dataset to disk.
-          // pass_data("{{workerId}}", "{{assignmentId}}", "{{hitId}}",  "{{a}}", "{{tp_a}}", "{{b}}", "{{tp_b}}", "{{c}}", "{{tp_c}}");
+          pass_data("{{workerId}}", "{{assignmentId}}", "{{hitId}}",  "{{a}}", "{{tp_a}}", "{{b}}", "{{tp_b}}", "{{c}}", "{{tp_c}}");
 
         } else {
 
