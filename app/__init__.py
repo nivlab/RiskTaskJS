@@ -88,7 +88,8 @@ def index():
 
         for k, v in info.items(): session[k] = v
         write_metadata(session, ['workerId','hitId','assignmentId','subId','browser','platform','version'], 'w')
-        return redirect(url_for('consent.consent'))
+        return redirect(url_for('experiment.experiment'))
+        # return redirect(url_for('consent.consent'))
 
     ## Case 3: first visit, workerId present.
     elif not 'workerId' in session:
@@ -98,7 +99,8 @@ def index():
         write_metadata(session, ['workerId','hitId','assignmentId','subId','browser','platform','version'], 'w')
 
         ## Redirect participant to consent form.
-        return redirect(url_for('consent.consent'))
+        return redirect(url_for('experiment.experiment'))
+        # return redirect(url_for('consent.consent'))
 
     ## Case 4: repeat visit, manually changed workerId.
     elif session['workerId'] != info['workerId'] and info['workerId'] is not None:
@@ -112,14 +114,16 @@ def index():
         for k, v in info.items(): session[k] = v
         write_metadata(session, ['workerId','hitId','assignmentId','subId','browser','platform','version'], 'w')
 
-        return redirect(url_for('consent.consent'))
+        # return redirect(url_for('consent.consent'))
+        return redirect(url_for('experiment.experiment'))
 
     ## Case 5: all else.
     else:
 
         ## Redirect participant to consent form.
         print('unhandled case in init detected.')
-        return redirect(url_for('consent.consent'))
+        return redirect(url_for('experiment.experiment'))
+        # return redirect(url_for('consent.consent'))
 
 ## DEV NOTE:
 ## The following route is strictly for development purpose and should be commented out before deployment.
