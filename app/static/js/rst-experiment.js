@@ -26,6 +26,26 @@ const feedback_duration = 2000;
 var missed_threshold = 100;
 var missed_responses = 0;
 
+// Subject ID Screen
+function getFormattedDate() {
+    var date = new Date();
+    var str = date.getFullYear() + "-" + (date.getMonth() + 1) + "-" + date.getDate() + " " +  date.getHours() + ":" + date.getMinutes() + ":" + date.getSeconds();
+    return str;
+}
+var subject_id = {
+    type: 'survey-text',
+    questions: [{
+      prompt: "Please enter the subject ID.",
+    }],
+    on_finish: function(data){
+      sub_num = JSON.parse(data.responses)["Q0"];
+      jsPsych.data.addProperties({
+        sub: sub_num,
+        start_time: getFormattedDate()
+      });
+    }
+};
+
 //------------------------------------//
 // Define instructions block.
 //------------------------------------//
