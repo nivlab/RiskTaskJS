@@ -35,7 +35,7 @@ function getFormattedDate() {
 var subject_id = {
     type: 'survey-text',
     questions: [{
-      prompt: "Please enter the subject ID.",
+      prompt: 'נא להכניס מספר נבדק כאן',
     }],
     on_finish: function(data){
       sub_num = JSON.parse(data.responses)["Q0"];
@@ -346,27 +346,21 @@ function create_trial_set(conditions){
         },
         on_finish: function(data) {
 
-          // Evaluate missing data
-          if ( data.key == null ) {
+          // Set missing data to false.
+          data.missing = false;
 
-            // Set missing data to true.
-            data.missing = true;
+          // Define accuracy.
+          data.accuracy = data.key == data.correct;
 
-            // Increment counter. Check if experiment should end.
-            missed_responses++;
-            if (missed_responses >= missed_threshold) {
-              jsPsych.endExperiment();
-            }
+          // Add interactions to the data variable
+          var interaction_data = jsPsych.data.getInteractionData();
+          jsPsych.data.get().addToLast({interactions: interaction_data.json()});
 
-          } else {
+          // Display jsPsych data in viewport.
+          //jsPsych.data.displayData();
 
-            // Set missing data to false.
-            data.missing = false;
-
-            // Define accuracy.
-            data.accuracy = data.key == data.correct;
-
-          }
+          // attempt to save data on every trial
+          pass_data("{{workerId}}", "{{assignmentId}}", "{{hitId}}",  "{{a}}", "{{tp_a}}", "{{b}}", "{{tp_b}}", "{{c}}", "{{tp_c}}");
 
         }
 
