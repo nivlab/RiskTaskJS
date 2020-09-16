@@ -353,14 +353,14 @@ function create_trial_set(conditions){
           data.accuracy = data.key == data.correct;
 
           // Add interactions to the data variable
-          var interaction_data = jsPsych.data.getInteractionData();
-          jsPsych.data.get().addToLast({interactions: interaction_data.json()});
+          //var interaction_data = jsPsych.data.getInteractionData();
+          //jsPsych.data.get().addToLast({interactions: interaction_data.json()});
 
           // Display jsPsych data in viewport.
           //jsPsych.data.displayData();
 
           // attempt to save data on every trial
-          pass_data("{{workerId}}", "{{assignmentId}}", "{{hitId}}",  "{{a}}", "{{tp_a}}", "{{b}}", "{{tp_b}}", "{{c}}", "{{tp_c}}");
+          //pass_data("{{workerId}}", "{{assignmentId}}", "{{hitId}}",  "{{a}}", "{{tp_a}}", "{{b}}", "{{tp_b}}", "{{c}}", "{{tp_c}}");
 
         }
 
