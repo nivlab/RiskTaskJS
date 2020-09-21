@@ -50,7 +50,7 @@ jsPsych.plugins["rst-trial"] = (function() {
       feedback_duration: {
         type: jsPsych.plugins.parameterType.INT,
         pretty_name: 'Trial duration',
-        default: 2000,
+        default: 10, //2000
         description: 'How long to show feedback before it ends.'
       }
     }
@@ -255,12 +255,13 @@ jsPsych.plugins["rst-trial"] = (function() {
       });
     }
 
+    // GEHA LINK: No timeout for children taking the task.
     // End trial if no response.
-    if (trial.choice_duration !== null) {
-      jsPsych.pluginAPI.setTimeout(function() {
-        missed_response();
-      }, trial.choice_duration);
-    }
+    // if (trial.choice_duration !== null) {
+    //   jsPsych.pluginAPI.setTimeout(function() {
+    //     missed_response();
+    //   }, trial.choice_duration);
+    // }
 
   };
 
