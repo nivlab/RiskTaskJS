@@ -34,6 +34,7 @@ function getFormattedDate() {
 }
 var subject_id = {
     type: 'survey-text',
+    button_label: 'המשך',
     questions: [{
       prompt: 'נא להכניס מספר נבדק כאן',
     }],
