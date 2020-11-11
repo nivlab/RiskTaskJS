@@ -17,10 +17,11 @@
 
         <!-- Load experiment -->
         <script src="../static/js/rst-experiment.js" type="text/javascript"></script>
+        <script src="../static/js/jspsych-instructions-hebrew.js" type="text/javascript"></script>
 
         <!-- Load jsPsych plug-ins -->
         <script src="../static/js/jspsych-rst-trial.js" type="text/javascript"></script>
-        <script src="../static/lib/jspsych-6.1.0/plugins/jspsych-instructions.js" type="text/javascript"></script>
+        <!-- <script src="../static/lib/jspsych-6.1.0/plugins/jspsych-instructions.js" type="text/javascript"></script> -->
         <script src="../static/lib/jspsych-6.1.0/plugins/jspsych-survey-text.js" type="text/javascript"></script>
 
         <!-- Load CSS styles -->
@@ -77,12 +78,12 @@
     // Define timeline.
     var timeline = [];
     timeline = timeline.concat(subject_id);
-    timeline = timeline.concat(instructions1);
-    timeline = timeline.concat(forced_choice_practice);
-    timeline = timeline.concat(instructions2);
-    timeline = timeline.concat(choice_practice);
-    timeline = timeline.concat(instructions3);
-    timeline = timeline.concat(rst_trials);
+    // timeline = timeline.concat(instructions1);
+    // timeline = timeline.concat(forced_choice_practice);
+    // timeline = timeline.concat(instructions2);
+    // timeline = timeline.concat(choice_practice);
+    // timeline = timeline.concat(instructions3);
+    // timeline = timeline.concat(rst_trials);
     timeline = timeline.concat(DEBRIEF);
 
     jsPsych.init({

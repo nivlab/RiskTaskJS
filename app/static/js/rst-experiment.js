@@ -66,8 +66,6 @@ var instructions1 = {
     `<img src='../static/img/instructions07.png' style="${style}"</img>`,
   ],
   show_clickable_nav: true,
-  button_label_previous: "Prev",
-  button_label_next: "Next"
 };
 
 var instructions2 = {
@@ -76,8 +74,6 @@ var instructions2 = {
     `<img src='../static/img/instructions08.png' style="${style}"</img>`,
   ],
   show_clickable_nav: true,
-  button_label_previous: "Prev",
-  button_label_next: "Next"
 };
 
 var instructions3 = {
@@ -86,8 +82,6 @@ var instructions3 = {
     `<img src='../static/img/instructions09.png' style="${style}"</img>`,
   ],
   show_clickable_nav: true,
-  button_label_previous: "Prev",
-  button_label_next: "Next"
 };
 
 //------------------------------------//
