@@ -381,7 +381,7 @@ function create_trial_set(conditions, correct){
           data.accuracy = data.key == data.correct;
 
           // save data after every trial
-          per_trial_pass_data("{{workerId}}", "{{assignmentId}}", "{{hitId}}",  "{{a}}", "{{tp_a}}", "{{b}}", "{{tp_b}}", "{{c}}", "{{tp_c}}");
+          // per_trial_pass_data("{{workerId}}", "{{assignmentId}}", "{{hitId}}",  "{{a}}", "{{tp_a}}", "{{b}}", "{{tp_b}}", "{{c}}", "{{tp_c}}");
         }
 
       }
